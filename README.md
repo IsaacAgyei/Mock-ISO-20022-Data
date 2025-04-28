@@ -2,6 +2,13 @@
 
 This application serves as a valuable tool for developers requiring sample ISO 20022 data. It offers a straightforward API to programmatically generate realistic ISO 20022 messages in both JSON and XML formats. This capability streamlines testing and development workflows by providing readily available data structures that adhere to the ISO 20022 standard.
 
+### Endpoints
+
+The following endpoints are currently available for generating pacs.002.001.12 messages:
+
+- **Generate XML:** `http://localhost:5064/api/v1/Pacs/00200112/xml/1`
+- **Generate JSON:** `http://localhost:5064/api/v1/Pacs/00200112/json/1`
+
 **Currently, the API supports the generation of pacs.002.001.12 messages.**
 
 Future enhancements to this API will include support for a wider range of ISO 20022 message sets, further expanding its utility for various financial messaging scenarios.
