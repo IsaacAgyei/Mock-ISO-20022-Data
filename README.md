@@ -6,8 +6,8 @@ This application serves as a valuable tool for developers requiring sample ISO 2
 
 Future enhancements to this API will include support for a wider range of ISO 20022 message sets, further expanding its utility for various financial messaging scenarios.
 
-Here is an example of a pacs.002.001.12 XML message. Each inner text represents the simpleType the element should derive its value from.
-The inner text that do not correspond with a simpleType name will be treated as unmutable text.
+Here is an example of a pacs.002.001.12 XML document and JSON object that can be passed as the request body. Each inner text represents the simpleType the element should derive its value from.
+Inner text that does not correspond with a simpleType name will be treated as unmutable text.
 
 ```xml
 <?xml version="1.0"?>
@@ -71,4 +71,69 @@ The inner text that do not correspond with a simpleType name will be treated as 
     </Ntfctn>
 </NtfctnToRcv>
 </Document>
+```
+
+```json
+{
+  "NtfctnToRcv": {
+    "GrpHdr": {
+      "MsgId": "318393",
+      "CreDtTm": "ISODateTime"
+    },
+    "Ntfctn": {
+      "Id": "ExternalAccountIdentification1Code",
+      "Itm": {
+        "Id": "BEBEBB0023CRESZZ",
+        "EndToEndId": "BEBEBB0023CRESZZ",
+        "Acct": {
+          "Id": {
+            "Othr": {
+              "SchmeNm": null
+            }
+          }
+        },
+        "Amt": {
+          "ActiveOrHistoricCurrencyAndAmount_SimpleType": {
+            "Ccy": "USD",
+            "value": "ActiveOrHistoricCurrencyAndAmount_SimpleType"
+          }
+        },
+        "XpctdValDt": "2010-02-22",
+        "Dbtr": {
+          "Pty": {
+            "PstlAdr": null,
+            "Id": {
+              "OrgId": null,
+              "PrvtId": {
+                "Othr": {
+                  "SchmeNm": null
+                }
+              }
+            }
+          }
+        },
+        "DbtrAgt": {
+          "FinInstnId": {
+            "BICFI": "BICFIDec2014Identifier",
+            "ClrSysMmbId": {
+              "ClrSysId": null,
+              "MmbId": null
+            },
+            "PstlAdr": null
+          }
+        },
+        "IntrmyAgt": {
+          "FinInstnId": {
+            "BICFI": "BICFIDec2014Identifier",
+            "ClrSysMmbId": {
+              "ClrSysId": null,
+              "MmbId": null
+            },
+            "PstlAdr": null
+          }
+        }
+      }
+    }
+  }
+}
 ```
