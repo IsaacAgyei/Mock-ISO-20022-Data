@@ -43,7 +43,6 @@ public class GenerateJson : Generate
       }
       else if (keyValuePair.Value is JsonArray arrayValue && arrayValue != null && arrayValue.GetValueKind() == JsonValueKind.Array)
       {
-        // if arrayValue[0] --> must _methodNameList.Contains(arrayValue.ToString()) : Throw error if failed
         if (arrayValue[0] != null && arrayValue[1] != null && arrayValue[0].GetValueKind() == JsonValueKind.String && arrayValue[1].GetValueKind() == JsonValueKind.String && methodList.Contains(arrayValue[0].ToString()))
         {
           Type getType = classInstance.GetType();
