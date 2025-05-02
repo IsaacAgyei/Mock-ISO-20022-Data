@@ -4,12 +4,12 @@ using datapltf.core.common.generators;
 
 namespace datapltf.pacs.aggregate;
 
-public class FIToFIPaymentStatusReportV12_XML
+public class FIToFIPaymentStatusReportV12_XML : GenerateXml
 {
   public readonly List<string> _methodNameList;
-  private string _alphaNumeric = GenerateXml.alphaNumeric;
-  private string _upperAlphaNumeric = GenerateXml.upperAlphaNumeric;
-  private string _lowerAlphaNumeric = GenerateXml.lowerAlphaNumeric;
+  private string _alphaNumeric = alphaNumeric;
+  private string _upperAlphaNumeric = upperAlphaNumeric;
+  private string _lowerAlphaNumeric = lowerAlphaNumeric;
 
   public FIToFIPaymentStatusReportV12_XML()
   {
