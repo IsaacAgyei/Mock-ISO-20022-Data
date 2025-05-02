@@ -479,6 +479,25 @@ public class FIToFIPaymentStatusReportV15_XML : GenerateXml
     return randomString;
   }
 
+  public string ExternalDocumentAmountType1Code()
+  {
+    /*
+      <xs:simpleType name="ExternalDocumentAmountType1Code">
+          <xs:restriction base="xs:string">
+              <xs:minLength value="1"/>
+              <xs:maxLength value="4"/>
+          </xs:restriction>
+      </xs:simpleType>
+    */
+    int length = new Random().Next(1, 5);
+    string randomString = "";
+
+    for (int i = 0; i < length; i++)
+    {
+      randomString += _alphaNumeric[new Random().Next(_alphaNumeric.Length)];
+    }
+    return randomString;
+  }
 
 
 
