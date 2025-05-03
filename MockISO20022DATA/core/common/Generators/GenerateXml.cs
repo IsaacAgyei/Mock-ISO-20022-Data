@@ -7,7 +7,7 @@ namespace datapltf.core.common.generators;
 
 public class GenerateXml : Generate
 {
-  public static string UpdateXmlInnerText(XmlDocument inputXml, List<string> methodList, FIToFIPaymentStatusReportV12_XML classInstance)
+  public static string UpdateXmlInnerText(XmlDocument inputXml, List<string> methodList, Object classInstance)
   {
     if (inputXml == null)
     {
@@ -37,7 +37,7 @@ public class GenerateXml : Generate
     }
   }
 
-  private static void ReplaceTextInNodes(XmlNode node, List<string> methodList, FIToFIPaymentStatusReportV12_XML classInstance)
+  private static void ReplaceTextInNodes(XmlNode node, List<string> methodList, Object classInstance)
   {
     if (node.NodeType == XmlNodeType.Element && node.HasChildNodes)
     {
