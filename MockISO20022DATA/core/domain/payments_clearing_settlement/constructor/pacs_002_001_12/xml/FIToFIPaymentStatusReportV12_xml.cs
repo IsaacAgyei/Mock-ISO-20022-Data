@@ -4,7 +4,7 @@ using datapltf.core.common.generators;
 
 namespace datapltf.pacs.aggregate;
 
-public class FIToFIPaymentStatusReportV12_XML : GenerateXml
+public class FIToFIPaymentStatusReportV12_XML : Generate
 {
   public readonly List<string> _methodNameList;
   private string _alphaNumeric = alphaNumeric;
@@ -13,7 +13,7 @@ public class FIToFIPaymentStatusReportV12_XML : GenerateXml
 
   public FIToFIPaymentStatusReportV12_XML()
   {
-    _methodNameList = GenerateXml.MethodNames(this);
+    _methodNameList = MethodNames(this);
   }
 
   public string ActiveOrHistoricCurrencyAndAmount_SimpleType()
@@ -907,118 +907,118 @@ public class FIToFIPaymentStatusReportV12_XML : GenerateXml
     return codes[randomNumber];
   }
 
-  // public string Max1025Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max1025Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="1025"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 1025)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max1025Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max1025Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="1025"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 1025)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max105Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max105Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="105"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 105)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max105Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max105Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="105"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 105)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max10KBinary(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max10KBinary">
-  //       <xs:restriction base="xs:base64Binary">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="10240"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   int textLength = userText.Length;
+  public string Max10KBinary(string userText)
+  {
+    /*
+    <xs:simpleType name="Max10KBinary">
+        <xs:restriction base="xs:base64Binary">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="10240"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    int textLength = userText.Length;
 
-  //   if (textLength < 1 || textLength > 10240)
-  //   {
-  //     return null; // Invalid length.
-  //   }
-  //   try
-  //   {
-  //     // Generate a random byte array of the specified length.
-  //     byte[] randomBytes = new byte[textLength];
-  //     Random random = new();
-  //     random.NextBytes(randomBytes);
+    if (textLength < 1 || textLength > 10240)
+    {
+      return null; // Invalid length.
+    }
+    try
+    {
+      // Generate a random byte array of the specified length.
+      byte[] randomBytes = new byte[textLength];
+      Random random = new();
+      random.NextBytes(randomBytes);
 
-  //     // Encode the byte array to base64.
-  //     string base64String = Convert.ToBase64String(randomBytes);
-  //     return base64String;
-  //   }
-  //   catch (Exception)
-  //   {
-  //     return null; // Handle any unexpected errors.
-  //   }
-  // }
+      // Encode the byte array to base64.
+      string base64String = Convert.ToBase64String(randomBytes);
+      return base64String;
+    }
+    catch (Exception)
+    {
+      return null; // Handle any unexpected errors.
+    }
+  }
 
-  // public string Max128Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max128Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="128"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 128)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max128Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max128Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="128"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 128)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max140Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max140Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="140"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 140)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max140Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max140Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="140"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 140)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
   public string Max15NumericText()
   {
@@ -1037,145 +1037,145 @@ public class FIToFIPaymentStatusReportV12_XML : GenerateXml
     return numericText;
   }
 
-  // public string Max16Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max16Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="16"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 16)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max16Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max16Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="16"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 16)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max2048Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max2048Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="2048"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 2028)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max2048Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max2048Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="2048"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 2028)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max34Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max34Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="34"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 34)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max34Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max34Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="34"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 34)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max350Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max350Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="350"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 350)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max350Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max350Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="350"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 350)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max35Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max35Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="35"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 35)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max35Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max35Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="35"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 35)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max4Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max4Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="4"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 4)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max4Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max4Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 4)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
-  // public string Max70Text(string userText)
-  // {
-  //   /*
-  //   <xs:simpleType name="Max70Text">
-  //       <xs:restriction base="xs:string">
-  //           <xs:minLength value="1"/>
-  //           <xs:maxLength value="70"/>
-  //       </xs:restriction>
-  //   </xs:simpleType>
-  //   */
-  //   if (userText.Length > 0 && userText.Length <= 70)
-  //   {
-  //     return userText;
-  //   }
-  //   else
-  //   {
-  //     throw new NotImplementedException();
-  //   }
-  // }
+  public string Max70Text(string userText)
+  {
+    /*
+    <xs:simpleType name="Max70Text">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="70"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    if (userText.Length > 0 && userText.Length <= 70)
+    {
+      return userText;
+    }
+    else
+    {
+      throw new NotImplementedException();
+    }
+  }
 
   public string NamePrefix2Code()
   {
@@ -1263,7 +1263,6 @@ public class FIToFIPaymentStatusReportV12_XML : GenerateXml
 
   public string PhoneNumber()
   {
-    // NEEDS TO FETCH NUMBERS FROM DBIT
     /*
     <xs:simpleType name="PhoneNumber">
         <xs:restriction base="xs:string">
@@ -1468,4 +1467,5 @@ public class FIToFIPaymentStatusReportV12_XML : GenerateXml
     }
     return randomString;
   }
+
 }
