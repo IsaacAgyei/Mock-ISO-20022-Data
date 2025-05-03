@@ -8,6 +8,8 @@ The following endpoints are currently available for generating pacs.002.001.12 m
 
 - **Generate XML:** `http://localhost:5064/api/v1/Pacs/00200112/xml/1`
 - **Generate JSON:** `http://localhost:5064/api/v1/Pacs/00200112/json/1`
+- **Generate XML:** `http://localhost:5064/api/v1/Pacs/00200115/xml/1`
+- **Generate JSON:** `http://localhost:5064/api/v1/Pacs/00200115/json/1`
 
 ### **Supported ISO 20022 Message Definition(s):**
 
@@ -16,7 +18,7 @@ The following endpoints are currently available for generating pacs.002.001.12 m
 
 Future enhancements to this API will include support for a wider range of ISO 20022 message sets, further expanding its utility for various financial messaging scenarios.
 
-Here is an example of a pacs.002.001.12 XML document and JSON object that can be passed as a request body in a POST request. For XML documents, the inner text of each element must correspond to the name of a simpleType as defined in the pacs.002.001.12 XSD file. This informs the API which type of mock value to generate for that element. Similarly, for JSON objects, the value in each key-value pair must be a string that corresponds to a simpleType name from the pacs.002.001.12 XSD. Any inner XML text or JSON value that does not match a simpleType name will be treated as static, unchangeable text.
+Here is an example of an XML document that adheres to a ISO 20022 message definition. For XML documents, the inner text of each element must correspond to the name of a simpleType as defined in the pacs.002.001.12 XSD file. This informs the API which type of mock value to generate for that element. Similarly, for JSON objects the value in each key-value pair must be a string that corresponds to a simpleType name from the message definition's XSD. Any inner XML text or JSON value that does not match a simpleType name will be treated as static, unchangeable text.
 
 ```xml
 <?xml version="1.0"?>
