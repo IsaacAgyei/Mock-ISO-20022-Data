@@ -4,7 +4,7 @@ using datapltf.core.common.generators;
 
 namespace datapltf.pacs.aggregate;
 
-public class FIToFIPaymentStatusReportV12_JSON : GenerateJson
+public class FIToFIPaymentStatusReportV12_JSON : Generate
 {
   public readonly List<string> _methodNameList;
   private string _alphaNumeric = alphaNumeric;
