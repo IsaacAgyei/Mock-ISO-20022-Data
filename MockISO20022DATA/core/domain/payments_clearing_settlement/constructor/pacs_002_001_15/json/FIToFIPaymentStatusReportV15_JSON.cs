@@ -1,31 +1,31 @@
 
 
-
-
 using System.Text;
+using System.Text.Json.Nodes;
 using datapltf.core.common.generators;
 
-public class FIToFIPaymentStatusReportV15_XML : Generate
+public class FIToFIPaymentStatusReportV15_JSON : Generate
 {
   public readonly List<string> _methodNameList;
   private string _alphaNumeric = alphaNumeric;
   private string _upperAlphaNumeric = upperAlphaNumeric;
   private string _lowerAlphaNumeric = lowerAlphaNumeric;
 
-  public FIToFIPaymentStatusReportV15_XML()
+  public FIToFIPaymentStatusReportV15_JSON()
   {
     _methodNameList = MethodNames(this);
   }
-  public string ActiveOrHistoricCurrencyAndAmount_SimpleType()
+
+  public JsonNode ActiveOrHistoricCurrencyAndAmount_SimpleType()
   {
     /*
-      <xs:simpleType name="ActiveOrHistoricCurrencyAndAmount_SimpleType">
-          <xs:restriction base="xs:decimal">
-              <xs:fractionDigits value="5"/>
-              <xs:totalDigits value="18"/>
-              <xs:minInclusive value="0"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ActiveOrHistoricCurrencyAndAmount_SimpleType">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="5"/>
+            <xs:totalDigits value="18"/>
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     decimal wholeNumberPart = new Random().Next(100_000);
     decimal fractionalPart = new Random().Next(99999);
@@ -42,7 +42,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string ActiveOrHistoricCurrencyCode()
+  public JsonNode ActiveOrHistoricCurrencyCode()
   {
     /*
       <xs:simpleType name="ActiveOrHistoricCurrencyCode">
@@ -61,16 +61,17 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return result.ToString();
   }
 
-  public string AddressType2Code()
+  public JsonNode AddressType2Code()
   {
     /*
-      <xs:restriction base="xs:string">
-          <xs:enumeration value="ADDR"/>
-          <xs:enumeration value="PBOX"/>
-          <xs:enumeration value="HOME"/>
-          <xs:enumeration value="BIZZ"/>
-          <xs:enumeration value="MLTO"/>
-          <xs:enumeration value="DLVY"/>
+      <xs:simpleType name="AddressType2Code">
+          <xs:restriction base="xs:string">
+              <xs:enumeration value="ADDR"/>
+              <xs:enumeration value="PBOX"/>
+              <xs:enumeration value="HOME"/>
+              <xs:enumeration value="BIZZ"/>
+              <xs:enumeration value="MLTO"/>
+              <xs:enumeration value="DLVY"/>
           </xs:restriction>
       </xs:simpleType>
     */
@@ -79,7 +80,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return addressType2Code[randomNumber];
   }
 
-  public string AnyBICDec2014Identifier()
+  public JsonNode AnyBICDec2014Identifier()
   {
     //     /*
     //     <xs:simpleType name="BICFIDec2014Identifier">
@@ -141,7 +142,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return bicFId;
   }
 
-  public string BICFIDec2014Identifier()
+  public JsonNode BICFIDec2014Identifier()
   {
     //     /*
     //     <xs:simpleType name="BICFIDec2014Identifier">
@@ -204,27 +205,27 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return bicFId;
   }
 
-  public string ClearingChannel2Code()
+  public JsonNode ClearingChannel2Code()
   {
-    /*
-       < xs:simpleType name = "ClearingChannel2Code" >
-         < xs:restriction base = "xs:string" >
-           < xs:enumeration value = "RTGS" />
-           < xs:enumeration value = "RTNS" />
-           < xs:enumeration value = "MPNS" />
-           < xs:enumeration value = "BOOK" />
-         </ xs:restriction >
-       </ xs:simpleType >
-     */
+    //     /*
+    //       <xs:simpleType name="ClearingChannel2Code">
+    //           <xs:restriction base="xs:string">
+    //               <xs:enumeration value="RTGS"/>
+    //               <xs:enumeration value="RTNS"/>
+    //               <xs:enumeration value="MPNS"/>
+    //               <xs:enumeration value="BOOK"/>
+    //           </xs:restriction>
+    //       </xs:simpleType>
+    //     */
     List<string> addressType2Code = ["RTGS", "RTNS", "MPNS", "BOOK"];
     int randomNumber = new Random().Next(addressType2Code.Count);
     return addressType2Code[randomNumber];
   }
 
-  public string CountryCode()
+  public JsonNode CountryCode()
   {
     /*
-      <xs:simpleType name="CountryCode">
+        <xs:simpleType name="CountryCode">
           <xs:restriction base="xs:string">
               <xs:pattern value="[A-Z]{2,2}"/>
           </xs:restriction>
@@ -239,7 +240,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return countryCode;
   }
 
-  public string CreditDebitCode()
+  public JsonNode CreditDebitCode()
   {
     /*
     <xs:simpleType name="CreditDebitCode">
@@ -255,7 +256,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string DecimalNumber()
+  public JsonNode DecimalNumber()
   {
     /*
     <xs:simpleType name="DecimalNumber">
@@ -280,7 +281,59 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string Exact2NumericText()
+  public JsonNode DocumentType3Code()
+  {
+    /*
+    <xs:simpleType name="DocumentType3Code">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RADM"/>
+            <xs:enumeration value="RPIN"/>
+            <xs:enumeration value="FXDR"/>
+            <xs:enumeration value="DISP"/>
+            <xs:enumeration value="PUOR"/>
+            <xs:enumeration value="SCOR"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    List<string> codes = ["RADM", "RPIN", "FXDR", "DISP", "PUOR", "SCOR"];
+    int randomNumber = new Random().Next(codes.Count);
+    return codes[randomNumber];
+  }
+
+  public JsonNode DocumentType6Code()
+  {
+    /*
+    <xs:simpleType name="DocumentType6Code">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MSIN"/>
+            <xs:enumeration value="CNFA"/>
+            <xs:enumeration value="DNFA"/>
+            <xs:enumeration value="CINV"/>
+            <xs:enumeration value="CREN"/>
+            <xs:enumeration value="DEBN"/>
+            <xs:enumeration value="HIRI"/>
+            <xs:enumeration value="SBIN"/>
+            <xs:enumeration value="CMCN"/>
+            <xs:enumeration value="SOAC"/>
+            <xs:enumeration value="DISP"/>
+            <xs:enumeration value="BOLD"/>
+            <xs:enumeration value="VCHR"/>
+            <xs:enumeration value="AROI"/>
+            <xs:enumeration value="TSUT"/>
+            <xs:enumeration value="PUOR"/>
+        </xs:restriction>
+      </xs:simpleType>
+    */
+    List<string> codes = ["MSIN", "CNFA", "DNFA", "CINV",
+                            "CREN", "DEBN", "HIRI", "SBIN",
+                            "CMCN", "SOAC", "DISP", "BOLD",
+                            "VCHR", "AROI", "TSUT", "PUOR"
+                        ];
+    int randomNumber = new Random().Next(codes.Count);
+    return codes[randomNumber];
+  }
+
+  public JsonNode Exact2NumericText()
   {
     /*
       <xs:simpleType name="Exact2NumericText">
@@ -297,7 +350,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomStringNumber;
   }
 
-  public string Exact4AlphaNumericText()
+  public JsonNode Exact4AlphaNumericText()
   {
     /*
     <xs:simpleType name="Exact4AlphaNumericText">
@@ -323,7 +376,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return alphaNumeric;
   }
 
-  public string ExternalAccountIdentification1Code()
+  public JsonNode ExternalAccountIdentification1Code()
   {
     /*
       <xs:simpleType name="ExternalAccountIdentification1Code">
@@ -343,7 +396,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalCashAccountType1Code()
+  public JsonNode ExternalCashAccountType1Code()
   {
     /*
       <xs:simpleType name="ExternalCashAccountType1Code">
@@ -363,7 +416,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalCashClearingSystem1Code()
+  public JsonNode ExternalCashClearingSystem1Code()
   {
     /*
       <xs:simpleType name="ExternalCashClearingSystem1Code">
@@ -383,7 +436,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalCategoryPurpose1Code()
+  public JsonNode ExternalCategoryPurpose1Code()
   {
     /*
       <xs:simpleType name="ExternalCategoryPurpose1Code">
@@ -403,27 +456,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalChargeType1Code()
-  {
-    /*
-    <xs:simpleType name="ExternalChargeType1Code">
-        <xs:restriction base="xs:string">
-            <xs:minLength value="1"/>
-            <xs:maxLength value="4"/>
-        </xs:restriction>
-    </xs:simpleType>
-    */
-    int length = new Random().Next(1, 5);
-    string randomString = "";
-
-    for (int i = 0; i < length; i++)
-    {
-      randomString += _alphaNumeric[new Random().Next(_alphaNumeric.Length)];
-    }
-    return randomString;
-  }
-
-  public string ExternalClearingSystemIdentification1Code()
+  public JsonNode ExternalClearingSystemIdentification1Code()
   {
     /*
       <xs:simpleType name="ExternalClearingSystemIdentification1Code">
@@ -443,15 +476,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalCreditorReferenceType1Code()
+  public JsonNode ExternalDiscountAmountType1Code()
   {
     /*
-      <xs:simpleType name="ExternalCreditorReferenceType1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalDiscountAmountType1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -463,15 +496,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalDateType1Code()
+  public JsonNode ExternalDocumentLineType1Code()
   {
     /*
-      <xs:simpleType name="ExternalDateType1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalDocumentLineType1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -483,15 +516,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalDocumentAmountType1Code()
+  public JsonNode ExternalFinancialInstitutionIdentification1Code()
   {
     /*
-      <xs:simpleType name="ExternalDocumentAmountType1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalFinancialInstitutionIdentification1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -503,15 +536,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalDocumentLineType1Code()
+  public JsonNode ExternalGarnishmentType1Code()
   {
     /*
-      <xs:simpleType name="ExternalDocumentLineType1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalGarnishmentType1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -523,75 +556,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalDocumentType1Code()
+  public JsonNode ExternalLocalInstrument1Code()
   {
     /*
-      <xs:simpleType name="ExternalDocumentType1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
-    */
-    int length = new Random().Next(1, 5);
-    string randomString = "";
-
-    for (int i = 0; i < length; i++)
-    {
-      randomString += _alphaNumeric[new Random().Next(_alphaNumeric.Length)];
-    }
-    return randomString;
-  }
-
-  public string ExternalFinancialInstitutionIdentification1Code()
-  {
-    /*
-      <xs:simpleType name="ExternalFinancialInstitutionIdentification1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
-    */
-    int length = new Random().Next(1, 5);
-    string randomString = "";
-
-    for (int i = 0; i < length; i++)
-    {
-      randomString += _alphaNumeric[new Random().Next(_alphaNumeric.Length)];
-    }
-    return randomString;
-  }
-
-  public string ExternalGarnishmentType1Code()
-  {
-    /*
-      <xs:simpleType name="ExternalGarnishmentType1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
-    */
-    int length = new Random().Next(1, 5);
-    string randomString = "";
-
-    for (int i = 0; i < length; i++)
-    {
-      randomString += _alphaNumeric[new Random().Next(_alphaNumeric.Length)];
-    }
-    return randomString;
-  }
-
-  public string ExternalLocalInstrument1Code()
-  {
-    /*
-      <xs:simpleType name="ExternalLocalInstrument1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="35"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalLocalInstrument1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="35"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 36);
     string randomString = "";
@@ -603,15 +576,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalMandateSetupReason1Code()
+  public JsonNode ExternalMandateSetupReason1Code()
   {
     /*
-      <xs:simpleType name="ExternalMandateSetupReason1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalMandateSetupReason1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -623,15 +596,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalOrganisationIdentification1Code()
+  public JsonNode ExternalOrganisationIdentification1Code()
   {
     /*
-      <xs:simpleType name="ExternalOrganisationIdentification1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalOrganisationIdentification1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -643,15 +616,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalPaymentGroupStatus1Code()
+  public JsonNode ExternalPaymentGroupStatus1Code()
   {
     /*
-      <xs:simpleType name="ExternalPaymentGroupStatus1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalPaymentGroupStatus1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -663,15 +636,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalPaymentTransactionStatus1Code()
+  public JsonNode ExternalPaymentTransactionStatus1Code()
   {
     /*
-      <xs:simpleType name="ExternalPaymentTransactionStatus1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalPaymentTransactionStatus1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -683,15 +656,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalPersonIdentification1Code()
+  public JsonNode ExternalPersonIdentification1Code()
   {
     /*
-      <xs:simpleType name="ExternalPersonIdentification1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalPersonIdentification1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -703,15 +676,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalProxyAccountType1Code()
+  public JsonNode ExternalProxyAccountType1Code()
   {
     /*
-      <xs:simpleType name="ExternalProxyAccountType1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalProxyAccountType1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -723,15 +696,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalPurpose1Code()
+  public JsonNode ExternalPurpose1Code()
   {
     /*
-      <xs:simpleType name="ExternalPurpose1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalPurpose1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -743,15 +716,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalServiceLevel1Code()
+  public JsonNode ExternalServiceLevel1Code()
   {
     /*
-      <xs:simpleType name="ExternalServiceLevel1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalServiceLevel1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -763,15 +736,15 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string ExternalStatusReason1Code()
+  public JsonNode ExternalStatusReason1Code()
   {
     /*
-      <xs:simpleType name="ExternalStatusReason1Code">
-          <xs:restriction base="xs:string">
-              <xs:minLength value="1"/>
-              <xs:maxLength value="4"/>
-          </xs:restriction>
-      </xs:simpleType>
+    <xs:simpleType name="ExternalStatusReason1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
     */
     int length = new Random().Next(1, 5);
     string randomString = "";
@@ -783,7 +756,27 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return randomString;
   }
 
-  public string Frequency6Code()
+  public JsonNode ExternalTaxAmountType1Code()
+  {
+    /*
+    <xs:simpleType name="ExternalTaxAmountType1Code">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
+    */
+    int length = new Random().Next(1, 5);
+    string randomString = "";
+
+    for (int i = 0; i < length; i++)
+    {
+      randomString += _alphaNumeric[new Random().Next(_alphaNumeric.Length)];
+    }
+    return randomString;
+  }
+
+  public JsonNode Frequency6Code()
   {
     /*
     <xs:simpleType name="Frequency6Code">
@@ -808,7 +801,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string IBAN2007Identifier()
+  public JsonNode IBAN2007Identifier()
   {
     /*
     <xs:simpleType name="IBAN2007Identifier">
@@ -842,7 +835,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return iBanId;
   }
 
-  public string ISODate()
+  public JsonNode ISODate()
   {
     /*
     <xs:simpleType name="ISODate">
@@ -852,7 +845,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return DateTime.UtcNow.ToString("yyyy-MM-dd");
   }
 
-  public string ISODateTime()
+  public JsonNode ISODateTime()
   {
     /*
     <xs:simpleType name="ISODateTime">
@@ -862,7 +855,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
   }
 
-  public string ISOYear()
+  public JsonNode ISOYear()
   {
     /*
     <xs:simpleType name="ISOYear">
@@ -872,7 +865,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return DateTime.UtcNow.ToString("yyyy");
   }
 
-  public string LEIIdentifier()
+  public JsonNode LEIIdentifier()
   {
     /*
     <xs:simpleType name="LEIIdentifier">
@@ -898,7 +891,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return leiIdentifier;
   }
 
-  public string MandateClassification1Code()
+  public JsonNode MandateClassification1Code()
   {
     /*
     <xs:simpleType name="MandateClassification1Code">
@@ -914,7 +907,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string Max1025Text(string userText)
+  public JsonNode Max1025Text(string userText)
   {
     /*
     <xs:simpleType name="Max1025Text">
@@ -934,7 +927,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string Max105Text(string userText)
+  public JsonNode Max105Text(string userText)
   {
     /*
     <xs:simpleType name="Max105Text">
@@ -954,8 +947,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-
-  public string Max10KBinary(string userText)
+  public JsonNode Max10KBinary(string userText)
   {
     /*
     <xs:simpleType name="Max10KBinary">
@@ -988,8 +980,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-
-  public string Max128Text(string userText)
+  public JsonNode Max128Text(string userText)
   {
     /*
     <xs:simpleType name="Max128Text">
@@ -1009,8 +1000,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-
-  public string Max140Text(string userText)
+  public JsonNode Max140Text(string userText)
   {
     /*
     <xs:simpleType name="Max140Text">
@@ -1030,7 +1020,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string Max15NumericText()
+  public JsonNode Max15NumericText()
   {
     /*
     <xs:simpleType name="Max15NumericText">
@@ -1047,8 +1037,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return numericText;
   }
 
-
-  public string Max16Text(string userText)
+  public JsonNode Max16Text(string userText)
   {
     /*
     <xs:simpleType name="Max16Text">
@@ -1068,7 +1057,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string Max2048Text(string userText)
+  public JsonNode Max2048Text(string userText)
   {
     /*
     <xs:simpleType name="Max2048Text">
@@ -1078,7 +1067,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
         </xs:restriction>
     </xs:simpleType>
     */
-    if (userText.Length > 0 && userText.Length <= 2048)
+    if (userText.Length > 0 && userText.Length <= 2028)
     {
       return userText;
     }
@@ -1088,27 +1077,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string Max256Text(string userText)
-  {
-    /*
-    <xs:simpleType name="Max256Text">
-        <xs:restriction base="xs:string">
-            <xs:minLength value="1"/>
-            <xs:maxLength value="256"/>
-        </xs:restriction>
-    </xs:simpleType>
-    */
-    if (userText.Length > 0 && userText.Length <= 256)
-    {
-      return userText;
-    }
-    else
-    {
-      throw new NotImplementedException();
-    }
-  }
-
-  public string Max34Text(string userText)
+  public JsonNode Max34Text(string userText)
   {
     /*
     <xs:simpleType name="Max34Text">
@@ -1128,8 +1097,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-
-  public string Max350Text(string userText)
+  public JsonNode Max350Text(string userText)
   {
     /*
     <xs:simpleType name="Max350Text">
@@ -1149,7 +1117,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string Max35Text(string userText)
+  public JsonNode Max35Text(string userText)
   {
     /*
     <xs:simpleType name="Max35Text">
@@ -1169,7 +1137,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string Max4Text(string userText)
+  public JsonNode Max4Text(string userText)
   {
     /*
     <xs:simpleType name="Max4Text">
@@ -1189,7 +1157,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string Max70Text(string userText)
+  public JsonNode Max70Text(string userText)
   {
     /*
     <xs:simpleType name="Max70Text">
@@ -1209,7 +1177,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string NamePrefix2Code()
+  public JsonNode NamePrefix2Code()
   {
     /*
     <xs:simpleType name="NamePrefix2Code">
@@ -1229,7 +1197,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string Number()
+  public JsonNode Number()
   {
     /*
     <xs:simpleType name="Number">
@@ -1251,7 +1219,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string PaymentMethod4Code()
+  public JsonNode PaymentMethod4Code()
   {
     /*
     <xs:simpleType name="PaymentMethod4Code">
@@ -1268,7 +1236,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string PercentageRate()
+  public JsonNode PercentageRate()
   {
     /*
     <xs:simpleType name="PercentageRate">
@@ -1293,7 +1261,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string PhoneNumber()
+  public JsonNode PhoneNumber()
   {
     /*
     <xs:simpleType name="PhoneNumber">
@@ -1328,26 +1296,25 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return phoneNumber.ToString();
   }
 
-  public string PreferredContactMethod2Code()
+  public JsonNode PreferredContactMethod1Code()
   {
     /*
-    <xs:simpleType name="PreferredContactMethod2Code">
+    <xs:simpleType name="PreferredContactMethod1Code">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="MAIL"/>
-            <xs:enumeration value="FAXX"/>
             <xs:enumeration value="LETT"/>
-            <xs:enumeration value="CELL"/>
-            <xs:enumeration value="ONLI"/>
+            <xs:enumeration value="MAIL"/>
             <xs:enumeration value="PHON"/>
+            <xs:enumeration value="FAXX"/>
+            <xs:enumeration value="CELL"/>
         </xs:restriction>
     </xs:simpleType>
     */
-    List<string> codes = ["MAIL", "FAXX", "LETT", "CELL", "ONLI", "PHON"];
+    List<string> codes = ["LETT", "MAIL", "PHON", "FAXX", "CELL"];
     int randomNumber = new Random().Next(codes.Count);
     return codes[randomNumber];
   }
 
-  public string Priority2Code()
+  public JsonNode Priority2Code()
   {
     /*
     <xs:simpleType name="Priority2Code">
@@ -1362,25 +1329,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string SHA256SignatureText()
-  {
-    /*
-    <xs:simpleType name="SHA256SignatureText">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="([0-9A-F][0-9A-F]){32}"/>
-        </xs:restriction>
-    </xs:simpleType>
-    */
-    byte[] randomBytes = new byte[32];
-
-    var rng = new Random();
-    rng.NextBytes(randomBytes);
-
-
-    return string.Join("", randomBytes.Select(b => b.ToString("X2")));
-  }
-
-  public string SequenceType3Code()
+  public JsonNode SequenceType3Code()
   {
     /*
     <xs:simpleType name="SequenceType3Code">
@@ -1398,7 +1347,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string SettlementMethod1Code()
+  public JsonNode SettlementMethod1Code()
   {
     /*
     <xs:simpleType name="SettlementMethod1Code">
@@ -1415,7 +1364,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string TaxRecordPeriod1Code()
+  public JsonNode TaxRecordPeriod1Code()
   {
     /*
     <xs:simpleType name="TaxRecordPeriod1Code">
@@ -1449,7 +1398,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     return codes[randomNumber];
   }
 
-  public string TrueFalseIndicator()
+  public JsonNode TrueFalseIndicator()
   {
     /*
     <xs:simpleType name="TrueFalseIndicator">
@@ -1467,7 +1416,7 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
   }
 
-  public string UUIDv4Identifier()
+  public JsonNode UUIDv4Identifier()
   {
     /*
     <xs:simpleType name="UUIDv4Identifier">
@@ -1518,6 +1467,5 @@ public class FIToFIPaymentStatusReportV15_XML : Generate
     }
     return randomString;
   }
-
 
 }
